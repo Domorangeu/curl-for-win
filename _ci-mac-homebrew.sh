@@ -13,11 +13,6 @@ if [[ "${CW_CONFIG:-}" != *'mac'* ]] || [[ "${CW_CONFIG:-}" = *'llvm'* ]]; then
 fi
 
 if [[ "${CW_CONFIG:-}" = *'win'* ]]; then
-  if [ -n "${APPVEYOR_ACCOUNT_NAME:-}" ] && \
-     [ "$(uname -m)" = 'arm64' ] && \
-     [ ! -f '/Library/Apple/usr/libexec/oah/libRosettaRuntime' ]; then
-    softwareupdate --install-rosetta --agree-to-license
-  fi
   extra+=' mingw-w64 osslsigncode wine-stable openssh'
   if [[ "${CW_CONFIG:-}" = *'boringssl'* ]] || [[ "${CW_CONFIG:-}" = *'awslc'* ]]; then
     extra+=' nasm'
